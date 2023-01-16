@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "ab2f3c6e-ace8-4bd3-b1a9-aaae1010a0b6",
+		"name": "Postman on Lesson 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21227754"
+	},
+	"item": [
+		{
+			"name": "slash",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ipadr1}}{{port}}/",
+					"protocol": "http",
+					"host": [
+						"{{ipadr1}}{{port}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"login_token = jsonData.token\r",
+							"\r",
+							"console.log(login_token)\r",
+							"\r",
+							"pm.environment.set(\"token\", login_token)\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "vadim",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "34343434",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/login",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_method",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//     pm.response.to.have.status(200);\r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/get_method?name={{name}}&age={{age}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"get_method"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//     pm.response.to.have.status(200);\r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "100",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{port}}/user_info_1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"user_info_1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//     pm.response.to.have.status(200);\r",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/user_info_3",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_3 TEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let req_f = request.data\r",
+							"let resp_f = pm.response.json();\r",
+							"\r",
+							"let req_age = +req_f.age\r",
+							"let resp_age = +resp_f.age\r",
+							"\r",
+							"let req_salary = +req_f.salary\r",
+							"let resp_salary_1_5_years = +resp_f.family.u_salary_1_5_year\r",
+							"\r",
+							"let children_2_name = resp_f.family.children[1][0]\r",
+							"\r",
+							"\r",
+							"console.log(req_f)\r",
+							"console.log(\"req_age = \" + req_age)\r",
+							"console.log(\"resp_age = \" + resp_age)\r",
+							"\r",
+							"console.log(resp_f.family.children)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check_age\", function () {\r",
+							"    pm.expect(req_age).to.eql(resp_age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_salary\", function () {\r",
+							"    pm.expect(req_salary*4).to.eql(resp_salary_1_5_years);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_children_2_name\", function () {\r",
+							"    pm.expect(children_2_name).to.eql(\"Kate\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_name_type\", function () {\r",
+							"    pm.expect(resp_f.name).to.be.a(\"String\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_name_salary\", function () {\r",
+							"    pm.expect(resp_f.salary).to.be.a(\"Number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_HAVE family property\", function () {\r",
+							"    pm.expect(resp_f).to.have.property(\"family\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_All_properties\", function () {\r",
+							"    pm.expect(resp_f).to.have.all.keys(\"age\", \"family\", \"name\", \"salary\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Inner_properties\", function () {\r",
+							"    pm.expect(resp_f.family).to.have.all.keys(\"children\", \"u_salary_1_5_year\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/user_info_3",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}

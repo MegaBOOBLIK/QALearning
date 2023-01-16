@@ -1,0 +1,477 @@
+{
+	"info": {
+		"_postman_id": "85f981fd-f1c6-45a2-89ef-679ba67ebe9a",
+		"name": "Postman HW_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21227754"
+	},
+	"item": [
+		{
+			"name": "first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Receive right string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!\");    \r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/first",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_3 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp_j = pm.response.json();\r",
+							"//let resp_age = +resp_j.age\r",
+							"let resp_salary_1_5_years = +resp_j.family.u_salary_1_5_year\r",
+							"\r",
+							"let req_d = request.data;\r",
+							"let req_salary = +request.data.salary\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//console.log(resp_f);\r",
+							"\r",
+							"pm.test(\"4 Check_name_type_and_equal\", function () {\r",
+							"    pm.expect(resp_j.name).to.be.a(\"String\") & pm.expect(resp_j.name).to.eql(\"DmitryG\");\r",
+							"//    pm.expect(resp_j.name).to.be.a(\"String\") & pm.expect(resp_j.name).to.eql(request.data.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"5 Check_age_type_and_eql\", function () {\r",
+							"    pm.expect(resp_j.age).to.be.a(\"String\") & pm.expect(resp_j.age).to.eql(\"150\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"6 Check_salary\", function () {\r",
+							"    pm.expect(req_salary*4).to.eql(4000);\r",
+							"//    pm.expect(req_salary*4).to.eql(resp_salary_1_5_years);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"8 Check_name_type_and_equal\", function () {\r",
+							"    pm.expect(resp_j.name).to.be.a(\"String\") & pm.expect(resp_j.name).to.eql(request.data.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"9 Check_age_type_and_eql\", function () {\r",
+							"    pm.expect(resp_j.age).to.be.a(\"String\") & pm.expect(resp_j.age).to.eql(request.data.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"10 Check_salary\", function () {\r",
+							"    pm.expect(req_salary).to.eql(resp_j.salary);\r",
+							"});\r",
+							"\r",
+							"// 11\r",
+							"console.log(resp_j.family);\r",
+							"\r",
+							"pm.test(\"12 Check_salary_1_5\", function () {\r",
+							"    pm.expect(req_salary*4).to.eql(resp_salary_1_5_years);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/user_info_3",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "object_info_3 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//console.info(\"hello\");\r",
+							"//connsole.warn(\"helo\");\r",
+							"//console.error(\"hello\");\r",
+							"\r",
+							"//console.log(resp_j.name);\r",
+							"//connsole.log(pm.request.url.query);\r",
+							"//console.log(pm.request.url.query.all());\r",
+							"//console.log(pm.request.url.query.get(\"name\"));\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () { // 2\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let resp_j = pm.response.json(); // 3\r",
+							"\r",
+							"let req_u = pm.request.url.query.all(); // 4\r",
+							"\r",
+							"pm.test(\"5 Check_name\", function () {\r",
+							"    pm.expect(resp_j.name).to.eql(pm.request.url.query.get(\"name\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"6 Check_age\", function () {\r",
+							"    pm.expect(resp_j.age).to.eql(pm.request.url.query.get(\"age\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"7 Check_salary\", function () {\r",
+							"//    console.log(typeof resp_j.salary);\r",
+							"//    console.log(typeof + pm.request.url.query.get(\"salary\"));\r",
+							"\r",
+							"    pm.expect(resp_j.salary).to.eql(+ pm.request.url.query.get(\"salary\"));\r",
+							"});\r",
+							"\r",
+							"console.log(resp_j.family); // 8\r",
+							"\r",
+							"pm.test(\"9 Check dog param name\", function () {\r",
+							"    pm.expect(resp_j.family.pets.dog).to.have.any.keys(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"10 Check dog param age\", function () {\r",
+							"    pm.expect(resp_j.family.pets.dog).to.have.any.keys(\"age\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"11 Check dog name\", function () {\r",
+							"    pm.expect(resp_j.family.pets.dog.name).to.eql(\"Luky\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"12 Check dog age\", function () {\r",
+							"    pm.expect(resp_j.family.pets.dog.age).to.eql(4);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/object_info_3?name={{name}}&age={{age}}&salary={{salary}}",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "object_info_4 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { // 2\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let resp_j = pm.response.json(); // 3\r",
+							"let ReqParam = pm.request.url.query.all(); // 4\r",
+							"\r",
+							"//console.log(ReqParam[0]);\r",
+							"//console.log(ReqParam[0].key);\r",
+							"//console.log(ReqParam[0].value);\r",
+							"\r",
+							"pm.test(\"6 Check_age\", function () {\r",
+							"//    console.log(typeof + resp_j.age);\r",
+							"//    console.log(typeof + ReqParam[1].value);\r",
+							"//    console.log(resp_j.age);\r",
+							"//    console.log(+ ReqParam[1].value);\r",
+							"\r",
+							"    pm.expect(resp_j.age).to.eql(+ ReqParam[1].value);\r",
+							"});\r",
+							"\r",
+							"console.log(\"Req salary \",+ ReqParam[2].value); //7 \r",
+							"\r",
+							"console.log(\"Resp salary \",resp_j.salary[0]); //8\r",
+							"\r",
+							"console.log(\"Resp 0 \",resp_j.salary[0]); //9\r",
+							"console.log(\"Resp 0 \",resp_j.salary[1]); //10\r",
+							"console.log(\"Resp 0 \",resp_j.salary[2]); //11\r",
+							"\r",
+							"pm.test(\"12 Check salary\", function () {\r",
+							"    pm.expect(+resp_j.salary[0]).to.eql(ReqParam[2].value*1);\r",
+							"});\r",
+							"pm.test(\"13 Check salary*2\", function () {\r",
+							"    pm.expect(+resp_j.salary[1]).to.eql(ReqParam[2].value*2);\r",
+							"});\r",
+							"pm.test(\"14 Check salary*3\", function () {\r",
+							"    pm.expect(+resp_j.salary[2]).to.eql(ReqParam[2].value*3);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"name\", \"Vasyja\"); //15\r",
+							"pm.environment.set(\"age\", \"999\"); //16\r",
+							"pm.environment.set(\"salary\", \"1000000\"); //17\r",
+							"\r",
+							"// 21\r",
+							"for (var i = 0; i < 3; i++) {\r",
+							"   console.info(+ resp_j.salary[i]);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/object_info_4?name={{name}}&age={{age}}&salary={{salary}}",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_2 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//access a variable at any scope including local\r",
+							"//console.log(pm.variables.get(\"name\"));\r",
+							"\r",
+							"//access a global variable\r",
+							"//console.log(pm.globals.get(\"name\"));\r",
+							"\r",
+							"//access a collection variable\r",
+							"//console.log(pm.collectionVariables.get(\"name\"));\r",
+							"\r",
+							"//access an environment variable\r",
+							"//console.log(pm.environment.get(\"name\"));\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () { //5\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let RespJ = pm.response.json(); //6\r",
+							"let ReqParam = request.data;    //7\r",
+							"let ReqSalary = \r",
+							"\r",
+							"pm.test(\"8 Check json have start_qa_salary\", function () {\r",
+							"    pm.expect(RespJ).to.have.any.keys(\"start_qa_salary\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"9 Check json have qa_salary_after_6_months\", function () {\r",
+							"    pm.expect(RespJ).to.have.any.keys(\"qa_salary_after_6_months\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"10 Check json have qa_salary_after_12_months\", function () {\r",
+							"    pm.expect(RespJ).to.have.any.keys(\"qa_salary_after_12_months\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"11 Check json have qa_salary_after_1.5_year\", function () {\r",
+							"    pm.expect(RespJ).to.have.any.keys(\"qa_salary_after_1.5_year\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"12 Check json have qa_salary_after_3.5_years\", function () {\r",
+							"    pm.expect(RespJ).to.have.any.keys(\"qa_salary_after_3.5_years\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"13 Check json have person\", function () {\r",
+							"    pm.expect(RespJ).to.have.any.keys(\"person\");\r",
+							"});\r",
+							"\r",
+							"    //console.log(RespJ.start_qa_salary);\r",
+							"    //console.log(+ReqParam.salary);\r",
+							"\r",
+							"pm.test(\"14 Check start_qa_salary\", function () {\r",
+							"    pm.expect(RespJ.start_qa_salary).to.eql(ReqParam.salary*1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"15 Check qa_salary_after_6_months\", function () {\r",
+							"    pm.expect(RespJ.qa_salary_after_6_months).to.eql(ReqParam.salary*2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"16 Check qa_salary_after_12_months\", function () {\r",
+							"    pm.expect(RespJ.qa_salary_after_12_months).to.eql(ReqParam.salary*2.7);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"17 Check qa_salary_after_1.5_year\", function () {\r",
+							"    //console.info(RespJ[\"qa_salary_after_1.5_year\"]);\r",
+							"    pm.expect(RespJ['qa_salary_after_1.5_year']).to.eql(ReqParam.salary*3.3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"18 Check qa_salary_after_3.5_years\", function () {\r",
+							"    pm.expect(RespJ['qa_salary_after_3.5_years']).to.eql(ReqParam.salary*3.8);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"19 Check person\", function () {\r",
+							"    //console.info(+ReqParam.salary);\r",
+							"    //console.info(RespJ.person.u_name[1]);\r",
+							"    pm.expect(RespJ.person.u_name[1]).to.eql(+ReqParam.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"20 Check u_age\", function () {\r",
+							"    pm.expect(RespJ.person.u_age).to.eql(+ReqParam.age);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"21 Check u_salary_5_years\", function () {\r",
+							"    pm.expect(RespJ.person.u_salary_5_years).to.eql(ReqParam.salary*4.2);\r",
+							"});\r",
+							"\r",
+							"//22\r",
+							"console.info(\"22\");\r",
+							"\r",
+							"obj = RespJ.person;\r",
+							"\r",
+							"for (const value of Object.values(obj)) {\r",
+							"  console.log(value);\r",
+							"}\r",
+							"\r",
+							"//for (const key of Object.keys(obj)) {\r",
+							"//  console.log(key);\r",
+							"//  console.log(obj[key]);\r",
+							"//}\r",
+							"\r",
+							"//for (const entry of Object.entries(obj)) {\r",
+							"//  console.log(entry); \r",
+							"//}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{prot}}{{ipadr1}}{{port}}/user_info_2",
+					"host": [
+						"{{prot}}{{ipadr1}}{{port}}"
+					],
+					"path": [
+						"user_info_2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
