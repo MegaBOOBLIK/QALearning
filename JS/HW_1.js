@@ -1,5 +1,7 @@
 //JS. HW_1
 
+//11111
+
 let item_1 = 5;
 console.log("Это значение переменной item_1", item_1);
 let item_2 = 3;
